@@ -1,13 +1,12 @@
 {
   "name": "@plugger/configuration-loader",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "git@github.com:MatiWall/Plugger.Configuration.Loader.git",
   "author": "Matias Wallenius <MatiWall@live.dk>",
   "license": "MIT",
   "private": false,
-  "type": "module",
   "scripts": {
     "build": "tsc",
     "test": "vitest",
