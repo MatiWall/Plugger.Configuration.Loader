@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "./dist",
+
+
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "useUnknownInCatchVariables": false,
+    "paths": {
+   //   "@plugger/*": ["./node_modules/@plugger/*"]
+    } 
+  },
+  "include": ["src/**/*.ts"],
+ //"exclude": ["node_modules/"]
+}
