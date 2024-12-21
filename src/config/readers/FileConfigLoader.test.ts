@@ -26,7 +26,7 @@ describe('AppConfig', () => {
         
         const appConfig = new FileConfigLoader(mockFilePath);
 
-        expect(appConfig.config).toEqual(ConfigSchema.parse(mockJsonData));
+        expect(appConfig.getConfig()).toEqual(ConfigSchema.parse(mockJsonData));
     });
 
     test('should load YAML config correctly', () => {
@@ -39,7 +39,7 @@ describe('AppConfig', () => {
         
         const reader = new FileConfigLoader(mockFilePath);
 
-        expect(reader.config).toEqual(ConfigSchema.parse(mockYamlData));
+        expect(reader.getConfig()).toEqual(ConfigSchema.parse(mockYamlData));
     });
 
     test('should throw an error if file does not exist', () => {

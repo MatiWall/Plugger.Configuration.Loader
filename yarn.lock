@@ -1390,10 +1390,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@plugger/configuration-core@0.1.1":
-  version "0.1.1"
-  resolved "http://verdaccio.mw.local/@plugger/configuration-core/-/configuration-core-0.1.1.tgz#e875de604b325a79c40ac7e99b1d01aa8cfe61b5"
-  integrity sha512-/o6VU/DmfOYD9vpjxQqlgW9A7O/Ev9Uvjl9jMTC49Xcbbd6ZJNKYcMFErKLZv9D8iRwEDQd2bG+fk+pBNIYuiw==
+"@plugger/configuration-core@^0.1.2":
+  version "0.1.2"
+  resolved "http://verdaccio.mw.local/@plugger/configuration-core/-/configuration-core-0.1.2.tgz#c52fab0ef7c9a04df47d6fb8d755db2524368ec2"
+  integrity sha512-FUYp02o/vPfka/zcag/nyX+V1i8Vuowwqr9JTpVH5Haj/7RxsT1p1AjR9su+Lq4XBjOl5tmrj3aIYw+vb5sKbg==
   dependencies:
     "@babel/preset-env" "^7.26.0"
     "@plugger/utils" "0.0.2"

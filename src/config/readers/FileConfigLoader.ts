@@ -6,7 +6,6 @@ import { ConfigType } from '@plugger/configuration-core';
 import { ConfigSchema } from '@plugger/configuration-core';
 
 class FileConfigLoader extends ConfigLoader {
-    config: ConfigType;
     path: string;
 
     constructor(filePath: string) {
