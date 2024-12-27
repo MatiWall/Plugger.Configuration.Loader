@@ -1,12 +1,15 @@
 import { ConfigLoader } from "./ConfigLoader";
-import { EnvConfigLoader } from "./readers/EnvConfigLoader";
-import { FileConfigLoader } from "./readers/FileConfigLoader";
+import { 
+    DefaultConfigLoader,
+    FileConfigLoader,
+    EnvConfigLoader 
+} from "./readers";
 
-EnvConfigLoader
 
 export {
     ConfigLoader,
+    
     FileConfigLoader,
-    EnvConfigLoader
-
+    EnvConfigLoader,
+    DefaultConfigLoader
 }

@@ -4,41 +4,40 @@ import {ConfigSchema} from '@plugger/configuration-core'
 import { idGenerator } from '@plugger/utils';
 import { UnknownExtensionConfig } from './errors';
 
-UnknownExtensionConfig
 
-abstract class ConfigLoader {
-    protected config: ConfigType
+abstract class ConfigLoader<TConfig = ConfigType> {
+    protected config: TConfig
     protected schema: ZodType
 
     constructor(
-        schema: ZodType = ConfigSchema
+        schema: ZodType = ConfigSchema,
     ){
         this.schema = schema;
     }
 
-    loadConfig(): ConfigType {
+    loadConfig(): TConfig {
         const config = this.fetchConfig();
         this.config = this.validateConfig(config);;
-        return this.config;
+        return this.config; 
     }
 
-    protected abstract fetchConfig(): ConfigType;
+    protected abstract fetchConfig(): TConfig;
 
 
-    protected validateConfig(config: object): ConfigType {
+    protected validateConfig(config: TConfig): TConfig {
         return this.schema.parse(config);
     }
 
-    isValid(config: object): boolean {
+    isValid(config: TConfig): boolean {
         try {
-            this.schema.parse(config);  // Try parsing
+            this.validateConfig(config);
             return true;
-        } catch (e) {
+        } catch {
             return false;
         }
     }
 
-    getConfig(){
+    getConfig(): TConfig{
         return this.config;
     }
 

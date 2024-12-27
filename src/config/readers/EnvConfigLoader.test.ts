@@ -22,13 +22,13 @@ describe('EnvConfigLoader', () =>{
         
         process.env[envKey] = JSON.stringify(mockConfig);
 
-        const loader = new EnvConfigLoader(envKey, schema);
+        const loader = new EnvConfigLoader(envKey);
 
-        expect(mockConfig).toEqual(loader.loadConfig());
+        expect(loader.getConfig()).toEqual(expect.objectContaining(mockConfig));
     })
 
     test('Config does not exists', ()=>{
-        const loader = new EnvConfigLoader(envKey, schema);
+        const loader = new EnvConfigLoader(envKey);
 
         expect(()=> {
             loader.loadConfig()

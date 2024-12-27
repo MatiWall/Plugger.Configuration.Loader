@@ -3,18 +3,14 @@ import * as path from 'path';
 import { parse as parseYaml } from 'yaml';
 import { ConfigLoader } from '../ConfigLoader';
 import { ConfigType } from '@plugger/configuration-core';
-import { ConfigSchema } from '@plugger/configuration-core';
-import { ZodType } from 'zod';
 
 class FileConfigLoader extends ConfigLoader {
-    path: string;
-    schema: ZodType
+    path: string
 
-    constructor(filePath: string, schema: ZodType = ConfigSchema) {
-        super(schema);  // Pass default schema
+    constructor(filePath: string) {
+        super();
         this.path = filePath;
-        const tmpConfig = this.loadConfig();  // Load and validate config
-        this.config = this.validateConfig(tmpConfig);  // Validate using the schema
+        this.loadConfig(); 
     }
 
     protected fetchConfig(): ConfigType {

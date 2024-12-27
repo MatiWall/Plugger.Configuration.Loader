@@ -8,10 +8,12 @@ class EnvConfigLoader extends ConfigLoader {
 
     constructor(
         envKey: string,
-        schema: ZodType = ConfigSchema 
+        schema: ZodType
     ){
         super(schema);
-        this.envKey = envKey
+        this.envKey = envKey;
+
+        this.loadConfig();
     }
 
     protected fetchConfig(): ConfigType {
@@ -30,8 +32,23 @@ class EnvConfigLoader extends ConfigLoader {
 
 }
 
+function createEnvConfigLoader({
+    envKey = 'APP_CONFIG',
+    schema = ConfigSchema
+}: {
+    envKey: string,
+    schema: ZodType
+}){
+
+    return new EnvConfigLoader(
+        envKey,
+        schema
+    )
+}
+
 
 
 export {
-    EnvConfigLoader
+    EnvConfigLoader,
+    createEnvConfigLoader
 }
