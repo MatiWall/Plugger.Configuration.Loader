@@ -1,10 +1,12 @@
 import { 
     ConfigLoader,
-    FileConfigLoader 
+    FileConfigLoader,
+    EnvConfigLoader 
 } from "./config";
 
 
 export {
     ConfigLoader,
-    FileConfigLoader
+    FileConfigLoader,
+    EnvConfigLoader
 } 
