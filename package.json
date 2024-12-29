@@ -1,6 +1,6 @@
 {
   "name": "@plugger/configuration-loader",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "git@github.com:MatiWall/Plugger.Configuration.Loader.git",

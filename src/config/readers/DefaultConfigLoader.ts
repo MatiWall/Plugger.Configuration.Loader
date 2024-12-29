@@ -26,7 +26,7 @@ function createInlineConfigLoader({
     config = ConfigSchema.parse({}),
     schema = ConfigSchema
 }: {
-    config?: object,
+    config?: ConfigType,
     schema?: ZodType
 }){
 
