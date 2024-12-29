@@ -5,12 +5,12 @@ import { idGenerator } from '@plugger/utils';
 import { UnknownExtensionConfig } from './errors';
 
 
-abstract class ConfigLoader<TConfig = ConfigType> {
+abstract class ConfigLoader<TConfig> {
     protected config: TConfig
     protected schema: ZodType
 
     constructor(
-        schema: ZodType = ConfigSchema,
+        schema: ZodType,
     ){
         this.schema = schema;
     }

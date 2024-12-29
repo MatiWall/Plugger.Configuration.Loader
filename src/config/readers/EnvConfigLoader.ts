@@ -2,13 +2,13 @@ import { ZodType } from 'zod';
 import { ConfigLoader } from '../ConfigLoader';
 import { ConfigType, ConfigSchema } from '@plugger/configuration-core';
 
-class EnvConfigLoader extends ConfigLoader {
+class EnvConfigLoader<TConfig> extends ConfigLoader<TConfig>  {
 
     envKey: string
 
     constructor(
         envKey: string,
-        schema: ZodType
+        schema: ZodType = ConfigSchema
     ){
         super(schema);
         this.envKey = envKey;
@@ -16,7 +16,7 @@ class EnvConfigLoader extends ConfigLoader {
         this.loadConfig();
     }
 
-    protected fetchConfig(): ConfigType {
+    protected fetchConfig(): TConfig {
 
         const appConfigString = process.env[this.envKey];
 
@@ -27,7 +27,7 @@ class EnvConfigLoader extends ConfigLoader {
         const appConfig = JSON.parse(appConfigString);
 
 
-        return appConfig
+        return appConfig as TConfig
     }
 
 }

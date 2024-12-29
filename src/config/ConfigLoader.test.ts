@@ -1,35 +1,48 @@
-import { describe, test } from "vitest"
-import { ConfigLoader } from "."
-import { ConfigType, ConfigSchema } from '@plugger/configuration-core'
-import { idGenerator } from "@plugger/utils"
+import { z, ZodType } from "zod";
+import { InlineConfigLoader } from "./readers/DefaultConfigLoader";
+import { idGenerator } from "@plugger/utils";
 
-describe('ConfigLoader', () => {
-
-    const kind: string = 'kind';
-    const namespace: string = 'namespace';
-    const name: string = 'name';
+describe("ConfigLoader", () => {
+    const kind: string = "kind";
+    const namespace: string = "namespace";
+    const name: string = "name";
 
     const testID: string = idGenerator(namespace, name, kind);
-    const extensionConfig: Object = {'test': 'config'};
+    const extensionConfig: object = { test: "config" };
 
-    const extensionsObj: object = {[testID]: extensionConfig}
+    const extensionsObj: object = { [testID]: extensionConfig };
 
-    class TestConfigLoader extends ConfigLoader {
-        protected fetchConfig(): ConfigType {
-            return ConfigSchema.parse({
-                extensions: extensionsObj
-            })
-        }
-    }
+    const schema: ZodType = z.object({
+        extensions: z.record(z.string(), z.object({
+            test: z.string(),
+        })),
+    });
 
-    test('getExtensionConfig', () => {
+    const loader = new InlineConfigLoader(
+        {
+            extensions: extensionsObj,
+        },
+        schema
+    );
 
-        const loader = new TestConfigLoader();
-        loader.loadConfig();
-
+    test("getExtensionConfig should return the correct extension config", () => {
         expect(loader.getExtensionConfig(namespace, name, kind)).toEqual(extensionConfig);
+    });
 
+    test("getExtensionConfig should throw an error for a non-existent extension", () => {
+        expect(() => loader.getExtensionConfig("invalid", "invalid", "invalid"))
+            .toThrowError(/does not exist/);
+    });
 
+    test("getExtensionConfig should throw an error if extensions are empty", () => {
+        const emptyLoader = new InlineConfigLoader(
+            {
+                extensions: {},
+            },
+            schema
+        );
 
-    })
-})
+        expect(() => emptyLoader.getExtensionConfig(namespace, name, kind))
+            .toThrowError(/does not exist/);
+    });
+});

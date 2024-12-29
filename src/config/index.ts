@@ -1,15 +1,21 @@
 import { ConfigLoader } from "./ConfigLoader";
 import { 
-    DefaultConfigLoader,
+    InlineConfigLoader,
+    createInlineConfigLoader,
     FileConfigLoader,
-    EnvConfigLoader 
+    EnvConfigLoader,
+    createEnvConfigLoader
 } from "./readers";
 
 
 export {
     ConfigLoader,
-    
+
     FileConfigLoader,
+
     EnvConfigLoader,
-    DefaultConfigLoader
+    createEnvConfigLoader,
+    
+    InlineConfigLoader,
+    createInlineConfigLoader
 }

@@ -3,7 +3,7 @@ import { ConfigLoader } from "../ConfigLoader";
 import { ConfigType, ConfigSchema } from "@plugger/configuration-core";
 
 
-class DefaultConfigLoader<TConfig = ConfigType> extends ConfigLoader {
+class InlineConfigLoader<TConfig> extends ConfigLoader<TConfig> {
     
     appConfig: TConfig
 
@@ -22,7 +22,7 @@ class DefaultConfigLoader<TConfig = ConfigType> extends ConfigLoader {
 
 }
 
-function createDefaultConfigLoader({
+function createInlineConfigLoader({
     config = ConfigSchema.parse({}),
     schema = ConfigSchema
 }: {
@@ -31,13 +31,13 @@ function createDefaultConfigLoader({
 }){
 
 
-    return new DefaultConfigLoader(
+    return new InlineConfigLoader(
         config,
         schema 
     );
 }
 
 export {
-    DefaultConfigLoader,
-    createDefaultConfigLoader
+    InlineConfigLoader,
+    createInlineConfigLoader
 }

@@ -1,9 +1,10 @@
 import { FileConfigLoader } from "./FileConfigLoader";
 import { EnvConfigLoader, createEnvConfigLoader } from "./EnvConfigLoader";
-import { DefaultConfigLoader } from "./DefaultConfigLoader";
+import { InlineConfigLoader, createInlineConfigLoader} from "./DefaultConfigLoader";
 
 export {
-    DefaultConfigLoader,
+    InlineConfigLoader,
+    createInlineConfigLoader,
 
     EnvConfigLoader,
     createEnvConfigLoader,

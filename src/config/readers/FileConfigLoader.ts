@@ -1,19 +1,24 @@
 import * as fs from 'fs';
 import * as path from 'path';
+
 import { parse as parseYaml } from 'yaml';
 import { ConfigLoader } from '../ConfigLoader';
-import { ConfigType } from '@plugger/configuration-core';
+import { ConfigType, ConfigSchema } from '@plugger/configuration-core';
+import { ZodType } from 'zod';
 
-class FileConfigLoader extends ConfigLoader {
+class FileConfigLoader<TConfig> extends ConfigLoader<TConfig> {
     path: string
 
-    constructor(filePath: string) {
-        super();
+    constructor(
+        filePath: string,
+        schema: ZodType = ConfigSchema
+        ) {
+        super(schema);
         this.path = filePath;
         this.loadConfig(); 
     }
 
-    protected fetchConfig(): ConfigType {
+    protected fetchConfig(): TConfig {
         const ext = path.extname(this.path).toLowerCase();  // Use 'this.path' directly
 
         // Ensure the file exists
@@ -25,7 +30,7 @@ class FileConfigLoader extends ConfigLoader {
         const fileContent = fs.readFileSync(this.path, 'utf-8');
 
         // Parse and return the file content based on its extension
-        return this.parseFileContent(fileContent, ext);
+        return this.parseFileContent(fileContent, ext) as TConfig;
     }
 
     private parseFileContent(fileContent: string, ext: string): ConfigType {
