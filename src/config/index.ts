@@ -2,7 +2,6 @@ import { ConfigLoader } from "./ConfigLoader";
 import { 
     InlineConfigLoader,
     createInlineConfigLoader,
-    FileConfigLoader,
     EnvConfigLoader,
     createEnvConfigLoader
 } from "./readers";
@@ -11,11 +10,9 @@ import {
 export {
     ConfigLoader,
 
-    FileConfigLoader,
-
     EnvConfigLoader,
     createEnvConfigLoader,
-    
+
     InlineConfigLoader,
     createInlineConfigLoader
 }

@@ -1,6 +1,6 @@
 import { 
     ConfigLoader,
-    FileConfigLoader,
+
     EnvConfigLoader, 
     createEnvConfigLoader,
 
@@ -15,9 +15,6 @@ export {
     createInlineConfigLoader, 
     InlineConfigLoader,
 
-    FileConfigLoader,
-
-    
     EnvConfigLoader,
     createEnvConfigLoader
 } 
