@@ -7,7 +7,7 @@ class EnvConfigLoader<TConfig> extends ConfigLoader<TConfig>  {
     envKey: string
 
     constructor(
-        envKey: string,
+        envKey: string = 'APP_CONFIG',
         schema: ZodType = ConfigSchema
     ){
         super(schema);
@@ -24,7 +24,17 @@ class EnvConfigLoader<TConfig> extends ConfigLoader<TConfig>  {
             throw new Error(`Invalid key ${this.envKey}, config does not exists`)
         }
 
-        const appConfig = JSON.parse(appConfigString);
+        let appConfig: TConfig;
+        if (typeof appConfigString === "string" ){
+            appConfig = JSON.parse(appConfigString);
+        }
+        else if (typeof appConfigString === "object"){
+            appConfig = appConfigString;
+        }
+        else {
+            throw Error(`Unknown type ${typeof appConfigString} of app config read from env var`)
+        }
+        
 
 
         return appConfig as TConfig
